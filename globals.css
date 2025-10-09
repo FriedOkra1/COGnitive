@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #c0c0c0;
+  --foreground: #000000;
+  --border: #000000;
+  --mac-gray: #c0c0c0;
+  --mac-dark-gray: #808080;
+  --mac-light-gray: #e0e0e0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'VT323', 'Chicago', 'Courier New', monospace;
+    background: #c0c0c0;
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Classic Mac UI Styles */
+.mac-window {
+  background: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.mac-titlebar {
+  background: #ffffff;
+  border-bottom: 2px solid #000000;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.mac-titlebar-pattern {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #000000 0px,
+    #000000 1px,
+    #ffffff 1px,
+    #ffffff 2px
+  );
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.mac-button {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 8px 24px;
+  cursor: pointer;
+  transition: all 0.1s;
+  font-family: 'VT323', 'Chicago', monospace;
+  font-size: 18px;
+  font-weight: normal;
+  color: #000000;
+}
+
+.mac-button:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.mac-button.active {
+  background: #000000;
+  color: #ffffff;
+}
+
+.mac-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.mac-input {
+  background: #ffffff;
+  border: 2px solid #000000;
+  padding: 8px 12px;
+  font-family: 'VT323', 'Chicago', monospace;
+  font-size: 18px;
+  color: #000000;
+}
+
+.mac-input:focus {
+  outline: 3px solid #000000;
+  outline-offset: 2px;
+}
+
+.mac-fieldset {
+  background: #f5f5f5;
+  border: 2px solid #000000;
+  padding: 24px 16px 16px 16px;
+  position: relative;
+  margin-top: 12px;
+}
+
+.mac-fieldset-legend {
+  background: #ffffff;
+  border: 2px solid #000000;
+  padding: 4px 12px;
+  position: absolute;
+  top: -16px;
+  left: 12px;
+  font-size: 18px;
+  font-family: 'VT323', 'Chicago', monospace;
+}
+
+.mac-card {
+  background: #ffffff;
+  border: 2px solid #000000;
+  padding: 16px;
+}
+
+.mac-close-box {
+  width: 24px;
+  height: 16px;
+  border: 2px solid #000000;
+  background: #ffffff;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mac-close-box:hover {
+  background: #000000;
+}
+
+.mac-close-box:hover svg {
+  color: #ffffff;
+}
+
+.pixel-border {
+  border: 3px solid #000000;
+  image-rendering: pixelated;
+}
+
+.thick-border {
+  border: 3px solid #000000;
+}
+
+.border-b-3 {
+  border-bottom: 3px solid #000000;
+}
+
+.border-r-3 {
+  border-right: 3px solid #000000;
+}
+
+.border-t-3 {
+  border-top: 3px solid #000000;
+}
+
+.border-l-3 {
+  border-left: 3px solid #000000;
+}
+
+.striped-header {
+  position: relative;
+  display: inline-block;
+  padding: 0 24px;
+}
+
+.striped-header::before,
+.striped-header::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 200px;
+  height: 8px;
+  background: repeating-linear-gradient(
+    0deg,
+    #000000 0px,
+    #000000 2px,
+    #ffffff 2px,
+    #ffffff 4px
+  );
+}
+
+.striped-header::before {
+  right: 100%;
+  margin-right: 16px;
+}
+
+.striped-header::after {
+  left: 100%;
+  margin-left: 16px;
+}
+
+.menu-bar {
+  background: #ffffff;
+  border-bottom: 2px solid #000000;
+  padding: 4px 8px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.menu-item {
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: 'VT323', 'Chicago', monospace;
+}
+
+.menu-item:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000000;
+  background: #ffffff;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox.checked::before {
+  content: '✓';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.radio {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  background: #ffffff;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio.selected::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  background: #000000;
+  border-radius: 50%;
+}
+
+.scrollbar {
+  width: 16px;
+  background: #ffffff;
+  border: 2px solid #000000;
+}
+
+.scrollbar-thumb {
+  background: #000000;
+  border: 1px solid #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'VT323', 'Chicago', monospace;
+  font-weight: normal;
+}
+
+p, span, div {
+  font-family: 'VT323', 'Chicago', monospace;
+}
+
+/* Feature Box Styles */
+.feature-box {
+  background: #ffffff;
+  border: 3px solid #000000;
+  padding: 48px 32px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.feature-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 8px 0px #000000;
+}
+
+/* Welcome Banner Style */
+.welcome-banner {
+  background: #ffffff;
+  border: 3px solid #000000;
+  padding: 24px 48px;
+  position: relative;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000000 0px,
+    #000000 4px,
+    #ffffff 4px,
+    #ffffff 8px
+  );
+}
+
+.welcome-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000000 0px,
+    #000000 4px,
+    #ffffff 4px,
+    #ffffff 8px
+  );
+}
+
+/* Chat Message Styles */
+.chat-message-user {
+  background: #ffffff;
+  border: 2px solid #000000;
+  padding: 12px 16px;
+  margin-left: auto;
+  max-width: 70%;
+  border-radius: 12px 12px 0 12px;
+}
+
+.chat-message-assistant {
+  background: #e0e0e0;
+  border: 2px solid #000000;
+  padding: 12px 16px;
+  margin-right: auto;
+  max-width: 70%;
+  border-radius: 12px 12px 12px 0;
+}
