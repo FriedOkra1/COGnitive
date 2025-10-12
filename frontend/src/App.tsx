@@ -93,7 +93,7 @@ export default function App() {
           <h1 className="text-5xl flex-1 text-center">AI Chatbot</h1>
           <div className="w-[52px] md:w-[120px]" /> {/* Spacer for centering */}
         </div>
-        <div className="overflow-auto flex-1">
+        <div className="p-8 overflow-auto flex-1">
           <SimpleChatbot onBack={() => setCurrentPage('home')} />
         </div>
       </div>

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-@custom-variant dark (&:is(.dark *));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --font-size: 16px;
@@ -10,23 +12,20 @@
   --mac-gray: #c0c0c0;
   --mac-dark-gray: #808080;
   --mac-light-gray: #e0e0e0;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-border: var(--border);
+  --color-background: #c0c0c0;
+  --color-foreground: #000000;
+  --color-border: #000000;
 }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: var(--border);
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: 'VT323', 'Chicago', 'Courier New', monospace;
-    background: #c0c0c0;
     image-rendering: pixelated;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: grayscale;
@@ -349,6 +348,52 @@ p, span, div {
   );
 }
 
+/* Plus Button Styles (for chatbot) */
+.plus-button {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'VT323', 'Chicago', monospace;
+  font-size: 18px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.plus-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.plus-button:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000000;
+}
+
+/* Plus Menu Items (for chatbot dropdown) */
+.plus-menu-item {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'VT323', 'Chicago', monospace;
+  font-size: 18px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.plus-menu-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px #000000;
+}
+
+.plus-menu-item:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000000;
+}
+
 /* Chat Message Styles */
 .chat-message-user {
   background: #ffffff;
@@ -366,4 +411,15 @@ p, span, div {
   margin-right: auto;
   max-width: 70%;
   border-radius: 12px 12px 12px 0;
+}
+
+.chat-message-system {
+  background: #f0f0f0;
+  border: 2px dashed #808080;
+  padding: 12px 16px;
+  margin: 0 auto;
+  max-width: 85%;
+  text-align: center;
+  border-radius: 8px;
+  color: #404040;
 }
