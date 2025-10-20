@@ -19,9 +19,21 @@
     "education",
     "openai",
     "react",
-    "typescript"
+    "typescript",
+    "study-companion",
+    "lecture-recording",
+    "flashcards",
+    "quiz-generator"
   ],
-  "author": "",
-  "license": "ISC"
+  "author": "COGnitive Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/COGnitive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/COGnitive/issues"
+  },
+  "homepage": "https://github.com/yourusername/COGnitive#readme"
 }
 

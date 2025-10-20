@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Backend API for COGnitive AI Study Companion",
   "main": "dist/index.js",
+  "author": "COGnitive Team",
+  "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
