@@ -1,0 +1,92 @@
+[
+  {
+    "id": "flashcard-1760983418929-0",
+    "type": "basic",
+    "front": "Transcript",
+    "back": "A written record of spoken language."
+  },
+  {
+    "id": "flashcard-1760983418929-1",
+    "type": "basic",
+    "front": "Video",
+    "back": "A recording of moving visual images."
+  },
+  {
+    "id": "flashcard-1760983418929-2",
+    "type": "basic",
+    "front": "Hello",
+    "back": "A greeting or expression of goodwill."
+  },
+  {
+    "id": "flashcard-1760983418929-3",
+    "type": "concept",
+    "front": "Importance of transcripts in education",
+    "back": "Transcripts provide a text version of audio or video content, aiding in comprehension, study, and accessibility."
+  },
+  {
+    "id": "flashcard-1760983418929-4",
+    "type": "concept",
+    "front": "Role of greetings in communication",
+    "back": "Greetings establish a connection and set a positive tone for interactions."
+  },
+  {
+    "id": "flashcard-1760983418929-5",
+    "type": "concept",
+    "front": "Audio quality in recordings",
+    "back": "Clear audio is essential for effective communication; poor quality can hinder understanding."
+  },
+  {
+    "id": "flashcard-1760983418929-6",
+    "type": "qa",
+    "front": "What is a transcript?",
+    "back": "A written record of spoken language."
+  },
+  {
+    "id": "flashcard-1760983418929-7",
+    "type": "qa",
+    "front": "Why are greetings important in communication?",
+    "back": "They establish a connection and set a positive tone."
+  },
+  {
+    "id": "flashcard-1760983418929-8",
+    "type": "qa",
+    "front": "How does audio quality affect understanding?",
+    "back": "Poor audio quality can hinder comprehension and engagement."
+  },
+  {
+    "id": "flashcard-1760983418929-9",
+    "type": "basic",
+    "front": "Check",
+    "back": "To verify the condition or quality of something."
+  },
+  {
+    "id": "flashcard-1760983418929-10",
+    "type": "basic",
+    "front": "1, 2",
+    "back": "Common way to test audio equipment."
+  },
+  {
+    "id": "flashcard-1760983418929-11",
+    "type": "concept",
+    "front": "Testing audio equipment",
+    "back": "Involves checking levels and clarity to ensure proper functionality before recording."
+  },
+  {
+    "id": "flashcard-1760983418929-12",
+    "type": "qa",
+    "front": "What does 'check 1, 2' refer to?",
+    "back": "A method used to test audio equipment."
+  },
+  {
+    "id": "flashcard-1760983418929-13",
+    "type": "qa",
+    "front": "What can hinder effective communication?",
+    "back": "Poor audio quality and lack of clarity."
+  },
+  {
+    "id": "flashcard-1760983418929-14",
+    "type": "basic",
+    "front": "Content",
+    "back": "The information or material contained in a medium."
+  }
+]

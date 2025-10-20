@@ -1,4 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 import { ClassicButton } from './ClassicButton';
 import { PixelUserIcon } from './icons/PixelUserIcon';
 import { PixelBotIcon } from './icons/PixelBotIcon';
@@ -14,6 +17,7 @@ interface Message {
 
 interface ChatInterfaceProps {
   context?: string;
+  images?: string[];
   onGenerateFlashcards?: () => void;
   onGenerateQuiz?: () => void;
   externalMessages?: Message[];
@@ -28,7 +32,7 @@ interface ChatInterfaceProps {
 
 export type { Message };
 
-export function ChatInterface({ context, onGenerateFlashcards, onGenerateQuiz, externalMessages, onAddMessage, renderInputArea }: ChatInterfaceProps) {
+export function ChatInterface({ context, images, onGenerateFlashcards, onGenerateQuiz, externalMessages, onAddMessage, renderInputArea }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -118,8 +122,13 @@ export function ChatInterface({ context, onGenerateFlashcards, onGenerateQuiz, e
           content: msg.content,
         }));
 
-      // Call the actual API
-      const responseText = await sendChatMessage(apiMessages, context);
+      // Call the actual API with images if provided
+      const responseText = await sendChatMessage(apiMessages, context, images);
+
+      // Validate response is not empty
+      if (!responseText || responseText.trim().length === 0) {
+        throw new Error('Received an empty response from the server.');
+      }
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -164,18 +173,28 @@ export function ChatInterface({ context, onGenerateFlashcards, onGenerateQuiz, e
             )}
             {message.role === 'system' ? (
               <div className="chat-message-system">
-                <p className="text-lg whitespace-pre-wrap" style={{ fontFamily: 'VT323, monospace' }}>
-                  {message.content}
-                </p>
+                <div className="markdown-content text-lg" style={{ fontFamily: 'VT323, monospace' }}>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkMath]} 
+                    rehypePlugins={[rehypeKatex]}
+                  >
+                    {message.content}
+                  </ReactMarkdown>
+                </div>
                 <p className="text-sm opacity-60 mt-1" style={{ fontFamily: 'VT323, monospace' }}>
                   {formatTime(message.timestamp)}
                 </p>
               </div>
             ) : (
               <div className={message.role === 'user' ? 'chat-message-user' : 'chat-message-assistant'}>
-                <p className="text-lg whitespace-pre-wrap" style={{ fontFamily: 'VT323, monospace' }}>
-                  {message.content}
-                </p>
+                <div className="markdown-content text-lg" style={{ fontFamily: 'VT323, monospace' }}>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkMath]} 
+                    rehypePlugins={[rehypeKatex]}
+                  >
+                    {message.content}
+                  </ReactMarkdown>
+                </div>
                 <p className="text-sm opacity-60 mt-1" style={{ fontFamily: 'VT323, monospace' }}>
                   {formatTime(message.timestamp)}
                 </p>

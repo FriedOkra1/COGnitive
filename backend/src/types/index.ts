@@ -1,11 +1,12 @@
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
-  content: string;
+  content: string | Array<{ type: 'text' | 'image_url'; text?: string; image_url?: { url: string } }>;
 }
 
 export interface ChatRequest {
   messages: ChatMessage[];
   context?: string;
+  images?: string[];
 }
 
 export interface ChatResponse {
@@ -23,6 +24,13 @@ export interface UploadDocumentResponse {
 export interface UploadAudioResponse {
   success: boolean;
   transcription: string;
+}
+
+export interface UploadImageResponse {
+  success: boolean;
+  imageData: string;
+  fileName: string;
+  mimeType: string;
 }
 
 export interface ErrorResponse {

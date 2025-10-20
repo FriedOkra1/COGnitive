@@ -4,17 +4,16 @@ A retro-styled Macintosh-inspired AI study companion with voice input, document 
 
 ## 🚀 Features
 
-### MVP (Current)
-- **AI Chatbot**: Real-time conversations powered by OpenAI GPT-4o-mini
-- **Document Upload**: Upload and chat with PDFs, DOCX, and TXT files
-- **Voice Input**: Record audio and get instant transcriptions via Whisper API
-- **Classic Mac UI**: Beautiful System 6-inspired interface
-
-### Coming Soon
-- Lecture Recording & Note Generation
-- YouTube Video Analysis
-- Flashcard Generation
-- Quiz Creation
+### Core Features
+- **Lecture Recording**: Record or upload lectures with automatic transcription and AI-generated notes
+- **AI Chatbot**: Multi-modal conversations with document, voice, and YouTube video support
+- **YouTube Analyzer**: Analyze YouTube videos with automatic transcription and summarization
+- **Document Processing**: Upload and chat with PDFs, DOCX, and TXT files
+- **Voice Input**: Record audio with instant Whisper API transcriptions
+- **Flashcard Generator**: Auto-generate study flashcards from any content
+- **Quiz Creator**: Create interactive quizzes from lectures, documents, or videos
+- **Persistent Storage**: All content persists across page switches until tab is closed
+- **Classic Mac UI**: Beautiful System 6-inspired retro interface
 
 ## 🛠️ Tech Stack
 
@@ -108,27 +107,42 @@ From the root directory:
 
 ## 🎯 Usage Guide
 
+### Getting Started
+The app opens to **Lecture Recording** by default. Toggle between Lecture Recording and AI Chatbot using the navigation buttons.
+
+### Lecture Recording
+1. Record live or upload audio/video files
+2. Get automatic transcription using Whisper AI
+3. Receive AI-generated notes, summaries, and key points
+4. Generate flashcards or quizzes from your lecture
+5. Chat with your lecture notes for deeper understanding
+
 ### AI Chatbot
-1. Click on "AI Chatbot" from the home screen
-2. Type your questions and get AI-powered responses
-3. Use the **+** button to access additional features:
-   - Upload documents (PDF, DOCX, TXT)
-   - Record voice messages
-   - Create notes (coming soon)
+Access multiple content types through the **+** menu:
 
-### Document Upload
-1. Click the **+** button in the chatbot
-2. Select "Upload Document"
-3. Choose a PDF, DOCX, or TXT file
-4. Ask questions about your document!
+#### Document Upload
+1. Click **+** → "Upload Document"
+2. Select PDF, DOCX, or TXT files
+3. Get automatic summary and chat about content
 
-### Voice Input
-1. Click the **+** button in the chatbot
-2. Select "Voice Input"
-3. Allow microphone access when prompted
-4. Speak your message
-5. Click "Stop Recording" when done
-6. Your audio will be transcribed automatically
+#### Voice Notes
+1. Click **+** → "Voice Input"
+2. Allow microphone access
+3. Record your voice note
+4. Automatic transcription and analysis
+
+#### YouTube Analysis
+1. Click **+** → "Analyze YouTube"
+2. Paste any YouTube URL
+3. Get video transcription and summary
+4. Chat about video content
+
+### Study Tools
+Generate flashcards and quizzes from any uploaded content:
+- Click "Generate Flashcards" for study cards
+- Click "Generate Quiz" for practice questions
+- Review and edit generated content
+- All content persists until you close the tab
 
 ## 📁 Project Structure
 
@@ -182,10 +196,23 @@ COGnitive/
 
 ## 📝 API Endpoints
 
+### Chat & Upload
 - `GET /health` - Health check
-- `POST /api/chat` - Send chat messages
+- `POST /api/chat` - Send chat messages with optional context and images
 - `POST /api/upload/document` - Upload and process documents
 - `POST /api/upload/audio` - Transcribe audio files
+
+### Lecture Recording
+- `POST /api/lectures/record` - Upload live recording
+- `POST /api/lectures/upload` - Upload pre-recorded lecture
+- `GET /api/lectures/status/:jobId` - Check processing status
+- `POST /api/lectures/:jobId/flashcards` - Generate flashcards from lecture
+- `POST /api/lectures/:jobId/quiz` - Generate quiz from lecture
+
+### YouTube Analysis
+- `POST /api/youtube/analyze` - Analyze YouTube video
+- `POST /api/youtube/flashcards` - Generate flashcards from transcript
+- `POST /api/youtube/quiz` - Generate quiz from transcript
 
 ## 🎨 Design
 
@@ -201,13 +228,13 @@ This project is open source and available for educational purposes.
 
 ## 🤝 Contributing
 
-This is an MVP. Future features include:
-- Database integration for persistent storage
-- User authentication
-- Flashcard generation
-- Quiz creation
-- YouTube video analysis
-- Lecture recording features
+Future enhancements could include:
+- Database integration for permanent storage
+- User authentication and accounts
+- Cloud storage for lectures
+- Export features (PDF, Anki cards, etc.)
+- Mobile app version
+- Collaborative study features
 
 ---
 
