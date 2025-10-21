@@ -448,150 +448,190 @@ export function LectureRecording(_props: LectureRecordingProps) {
       )}
 
       {/* Completed - Show Results */}
-      {isCompleted && jobStatus?.data && (
+      {isCompleted && (
         <>
-          {/* Actions */}
-          <div className="mac-fieldset">
-            <div className="mac-fieldset-legend">Quick Actions</div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <ClassicButton onClick={() => {
-                setShowChat(!showChat);
-                setShowFlashcards(false);
-                setShowQuiz(false);
-              }}>
-                <div className="flex items-center justify-center gap-2">
-                  <PixelChatIcon size={24} />
-                  <span>Chat with Notes</span>
-                </div>
-              </ClassicButton>
-              <ClassicButton onClick={handleGenerateFlashcards}>
-                <div className="flex items-center justify-center gap-2">
-                  <PixelFlashcardIcon size={24} />
-                  <span>Create Flashcards</span>
-                </div>
-              </ClassicButton>
-              <ClassicButton onClick={handleGenerateQuiz}>
-                <div className="flex items-center justify-center gap-2">
-                  <PixelQuizIcon size={24} />
-                  <span>Generate Quiz</span>
-                </div>
-              </ClassicButton>
+          {/* Check if data is available, show error if not */}
+          {!jobStatus?.data || !jobStatus?.data?.notes || !jobStatus?.data?.transcript ? (
+            <div className="mac-fieldset">
+              <div className="mac-fieldset-legend">Processing Incomplete</div>
+              <div className="mac-card bg-yellow-50 border-yellow-300 p-8 text-center">
+                <p className="text-2xl mb-2">Lecture data is incomplete</p>
+                <p className="text-lg opacity-70 mb-4">
+                  The lecture processing completed but some data is missing. This might be a temporary issue.
+                </p>
+                <ClassicButton 
+                  onClick={() => {
+                    setJobId(null);
+                    setJobStatus(null);
+                    setError('');
+                  }}
+                  className="mt-4"
+                >
+                  Try Again
+                </ClassicButton>
+              </div>
             </div>
-          </div>
-
-          {/* Lecture Summary */}
-          <div className="mac-fieldset">
-            <div className="mac-fieldset-legend">Lecture Summary</div>
-            <div className="mac-card p-6">
-              <p className="text-xl mb-4">{jobStatus.data.notes.summary}</p>
-              
-              <div className="mt-6">
-                <p className="text-2xl mb-3">Key Points:</p>
-                <ul className="list-disc list-inside space-y-2">
-                  {jobStatus.data.notes.keyPoints.map((point, i) => (
-                    <li key={i} className="text-lg">{point}</li>
-                  ))}
-                </ul>
+          ) : (
+            <>
+              {/* Actions */}
+              <div className="mac-fieldset">
+                <div className="mac-fieldset-legend">Quick Actions</div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <ClassicButton onClick={() => {
+                    setShowChat(!showChat);
+                    setShowFlashcards(false);
+                    setShowQuiz(false);
+                  }}>
+                    <div className="flex items-center justify-center gap-2">
+                      <PixelChatIcon size={24} />
+                      <span>Chat with Notes</span>
+                    </div>
+                  </ClassicButton>
+                  <ClassicButton onClick={handleGenerateFlashcards}>
+                    <div className="flex items-center justify-center gap-2">
+                      <PixelFlashcardIcon size={24} />
+                      <span>Create Flashcards</span>
+                    </div>
+                  </ClassicButton>
+                  <ClassicButton onClick={handleGenerateQuiz}>
+                    <div className="flex items-center justify-center gap-2">
+                      <PixelQuizIcon size={24} />
+                      <span>Generate Quiz</span>
+                    </div>
+                  </ClassicButton>
+                </div>
               </div>
 
-              {jobStatus.data.notes.topics.length > 0 && (
-                <div className="mt-6">
-                  <p className="text-2xl mb-3">Topics Covered:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {jobStatus.data.notes.topics.map((topic, i) => (
-                      <span key={i} className="mac-button px-3 py-1 text-lg">
-                        {topic}
-                      </span>
-                    ))}
+              {/* Two-column layout for desktop, stacked for mobile */}
+              <div className="flex flex-col md:flex-row gap-6">
+                {/* Main Content Column */}
+                <div className="flex-1 space-y-6">
+                  {/* Lecture Summary */}
+                  <div className="mac-fieldset">
+                    <div className="mac-fieldset-legend">Lecture Summary</div>
+                    <div className="mac-card p-6">
+                      <p className="text-xl mb-4">{jobStatus.data.notes.summary}</p>
+                      
+                      <div className="mt-6">
+                        <p className="text-2xl mb-3">Key Points:</p>
+                        <ul className="list-disc list-inside space-y-2">
+                          {jobStatus.data.notes.keyPoints.map((point, i) => (
+                            <li key={i} className="text-lg">{point}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {jobStatus.data.notes.topics.length > 0 && (
+                        <div className="mt-6">
+                          <p className="text-2xl mb-3">Topics Covered:</p>
+                          <div className="flex flex-wrap gap-2">
+                            {jobStatus.data.notes.topics.map((topic, i) => (
+                              <span key={i} className="mac-button px-3 py-1 text-lg">
+                                {topic}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {jobStatus.data.notes.actionItems && jobStatus.data.notes.actionItems.length > 0 && (
+                        <div className="mt-6">
+                          <p className="text-2xl mb-3">Action Items:</p>
+                          <ul className="list-disc list-inside space-y-2">
+                            {jobStatus.data.notes.actionItems.map((item, i) => (
+                              <li key={i} className="text-lg">{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Detailed Notes */}
+                  <div className="mac-fieldset">
+                    <div className="mac-fieldset-legend">Detailed Notes</div>
+                    <div className="mac-card">
+                      <pre className="whitespace-pre-wrap text-xl" style={{ fontFamily: 'VT323, monospace' }}>
+                        {jobStatus.data.notes.detailedNotes}
+                      </pre>
+                    </div>
+                  </div>
+
+                  {/* Transcript */}
+                  <div className="mac-fieldset">
+                    <div className="mac-fieldset-legend">Full Transcript</div>
+                    <div className="mac-card">
+                      <p className="text-lg leading-relaxed">{jobStatus.data.transcript}</p>
+                    </div>
+                  </div>
+
+                  {/* New Lecture Button */}
+                  <div className="text-center">
+                    <ClassicButton 
+                      onClick={() => {
+                        setJobId(null);
+                        setJobStatus(null);
+                        setFlashcards([]);
+                        setQuiz([]);
+                        setShowChat(false);
+                        setShowFlashcards(false);
+                        setShowQuiz(false);
+                        // Clear session storage for lecture
+                        sessionStorage.removeItem('lecture_jobId');
+                        sessionStorage.removeItem('lecture_jobStatus');
+                        sessionStorage.removeItem('lecture_flashcards');
+                        sessionStorage.removeItem('lecture_quiz');
+                        sessionStorage.removeItem('lecture_showChat');
+                        sessionStorage.removeItem('lecture_showFlashcards');
+                        sessionStorage.removeItem('lecture_showQuiz');
+                      }}
+                    >
+                      Process Another Lecture
+                    </ClassicButton>
                   </div>
                 </div>
-              )}
 
-              {jobStatus.data.notes.actionItems && jobStatus.data.notes.actionItems.length > 0 && (
-                <div className="mt-6">
-                  <p className="text-2xl mb-3">Action Items:</p>
-                  <ul className="list-disc list-inside space-y-2">
-                    {jobStatus.data.notes.actionItems.map((item, i) => (
-                      <li key={i} className="text-lg">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
+                {/* Sidebar Column - only on desktop when any feature is active */}
+                {(showChat || showFlashcards || showQuiz) && (
+                  <div className="w-full md:w-[400px] md:sticky md:top-4 md:self-start space-y-6" style={{ maxHeight: 'calc(100vh - 2rem)' }}>
+                    {/* Chat Interface */}
+                    {showChat && (
+                      <div className="mac-fieldset">
+                        <div className="mac-fieldset-legend">Chat with Your Notes</div>
+                        <div className="h-[500px]">
+                          <ChatInterface 
+                            context={jobStatus.data.transcript}
+                            onGenerateFlashcards={handleGenerateFlashcards}
+                            onGenerateQuiz={handleGenerateQuiz}
+                          />
+                        </div>
+                      </div>
+                    )}
 
-          {/* Detailed Notes */}
-          <div className="mac-fieldset">
-            <div className="mac-fieldset-legend">Detailed Notes</div>
-            <div className="mac-card">
-              <pre className="whitespace-pre-wrap text-xl" style={{ fontFamily: 'VT323, monospace' }}>
-                {jobStatus.data.notes.detailedNotes}
-              </pre>
-            </div>
-          </div>
+                    {/* Flashcards */}
+                    {showFlashcards && flashcards.length > 0 && (
+                      <div className="mac-fieldset">
+                        <div className="mac-fieldset-legend">Flashcards</div>
+                        <div className="overflow-y-auto" style={{ maxHeight: showChat ? '400px' : '800px' }}>
+                          <FlashcardViewer flashcards={flashcards} />
+                        </div>
+                      </div>
+                    )}
 
-          {/* Transcript */}
-          <div className="mac-fieldset">
-            <div className="mac-fieldset-legend">Full Transcript</div>
-            <div className="mac-card">
-              <p className="text-lg leading-relaxed">{jobStatus.data.transcript}</p>
-            </div>
-          </div>
-
-          {/* Chat Interface */}
-          {showChat && (
-            <div className="mac-fieldset">
-              <div className="mac-fieldset-legend">Chat with Your Notes</div>
-              <div className="h-[500px]">
-                <ChatInterface 
-                  context={jobStatus.data.transcript}
-                  onGenerateFlashcards={handleGenerateFlashcards}
-                  onGenerateQuiz={handleGenerateQuiz}
-                />
+                    {/* Quiz */}
+                    {showQuiz && quiz.length > 0 && (
+                      <div className="mac-fieldset">
+                        <div className="mac-fieldset-legend">Quiz</div>
+                        <div className="overflow-y-auto" style={{ maxHeight: showChat ? '400px' : '800px' }}>
+                          <QuizViewer questions={quiz} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
-            </div>
+            </>
           )}
-
-          {/* Flashcards */}
-          {showFlashcards && flashcards.length > 0 && (
-            <div className="mac-fieldset">
-              <div className="mac-fieldset-legend">Flashcards</div>
-              <FlashcardViewer flashcards={flashcards} />
-            </div>
-          )}
-
-          {/* Quiz */}
-          {showQuiz && quiz.length > 0 && (
-            <div className="mac-fieldset">
-              <div className="mac-fieldset-legend">Quiz</div>
-              <QuizViewer questions={quiz} />
-            </div>
-          )}
-
-          {/* New Lecture Button */}
-          <div className="text-center">
-            <ClassicButton 
-              onClick={() => {
-                setJobId(null);
-                setJobStatus(null);
-                setFlashcards([]);
-                setQuiz([]);
-                setShowChat(false);
-                setShowFlashcards(false);
-                setShowQuiz(false);
-                // Clear session storage for lecture
-                sessionStorage.removeItem('lecture_jobId');
-                sessionStorage.removeItem('lecture_jobStatus');
-                sessionStorage.removeItem('lecture_flashcards');
-                sessionStorage.removeItem('lecture_quiz');
-                sessionStorage.removeItem('lecture_showChat');
-                sessionStorage.removeItem('lecture_showFlashcards');
-                sessionStorage.removeItem('lecture_showQuiz');
-              }}
-            >
-              Process Another Lecture
-            </ClassicButton>
-          </div>
         </>
       )}
     </div>
