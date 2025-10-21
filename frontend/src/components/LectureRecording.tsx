@@ -10,7 +10,7 @@ import { PixelUploadIcon } from './icons/PixelUploadIcon';
 import { FlashcardViewer } from './FlashcardViewer';
 import { QuizViewer } from './QuizViewer';
 
-const API_BASE = 'http://localhost:3001/api/lectures';
+const API_BASE = `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/lectures`;
 
 interface LectureRecordingProps {
   onBack?: () => void;
