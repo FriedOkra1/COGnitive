@@ -441,5 +441,5 @@ By contributing to COGnitive, you agree that your contributions will be licensed
 
 ---
 
-Thank you for contributing to COGnitive! 🎓✨
+Thank you for contributing to COGnitive!
 

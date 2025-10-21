@@ -40,7 +40,7 @@ export async function processLecture(
     if (!jobId) {
       jobId = await createJob(fileName, stats.size);
     }
-    console.log(`🎓 Processing lecture: ${jobId}`);
+    console.log(`Processing lecture: ${jobId}`);
 
     // Validate audio file
     await updateProgress(jobId, 'pending', 5, 'Validating audio file');
@@ -57,10 +57,10 @@ export async function processLecture(
     let transcript: string;
 
     if (needsChunking) {
-      console.log('📦 Audio file needs chunking');
+      console.log('Audio file needs chunking');
       transcript = await processLargeAudio(jobId, jobAudioPath, audioInfo.duration);
     } else {
-      console.log('📝 Audio file can be processed directly');
+      console.log('Audio file can be processed directly');
       transcript = await processSmallAudio(jobId, jobAudioPath);
     }
 
@@ -115,7 +115,7 @@ async function processLargeAudio(
   await updateProgress(jobId, 'splitting_audio', 10, 'Splitting audio into chunks');
   const chunks = await splitAudioIntoChunks(jobId, audioPath);
 
-  console.log(`🔪 Split into ${chunks.length} chunks`);
+  console.log(`Split into ${chunks.length} chunks`);
 
   // Transcribe each chunk
   const transcripts: string[] = [];
@@ -140,7 +140,7 @@ async function processLargeAudio(
     const chunkTranscript = await transcribeAudioWithRetry(audioBuffer, fileName);
     transcripts.push(chunkTranscript);
 
-    console.log(`✅ Chunk ${i + 1}/${chunks.length} transcribed (${chunkTranscript.length} chars)`);
+    console.log(`Chunk ${i + 1}/${chunks.length} transcribed (${chunkTranscript.length} chars)`);
   }
 
   // Combine transcripts

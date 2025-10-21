@@ -499,5 +499,5 @@ git push origin main
 
 ---
 
-Congratulations! Your COGnitive app is now deployed! 🚀
+Congratulations! Your COGnitive app is now deployed!
 

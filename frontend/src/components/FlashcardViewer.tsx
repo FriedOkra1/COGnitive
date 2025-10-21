@@ -242,7 +242,7 @@ export function FlashcardViewer({ flashcards, onUpdateFlashcard }: FlashcardView
 
       {/* Study Tips */}
       <div className="mac-card p-6 bg-[#fffef0]">
-        <p className="text-xl mb-2">📚 Study Tip:</p>
+        <p className="text-xl mb-2">Study Tip:</p>
         <p className="text-lg opacity-80">
           Try to recall the answer before flipping. Active recall helps strengthen memory!
         </p>

@@ -85,7 +85,7 @@ export async function splitAudioIntoChunks(
   const numChunks = Math.ceil(info.duration / CHUNK_DURATION_SECONDS);
   const chunks: AudioChunk[] = [];
   
-  console.log(`🔪 Splitting audio into ${numChunks} chunks of ${CHUNK_DURATION_SECONDS / 60} minutes each`);
+  console.log(`Splitting audio into ${numChunks} chunks of ${CHUNK_DURATION_SECONDS / 60} minutes each`);
   
   for (let i = 0; i < numChunks; i++) {
     const startTime = i * CHUNK_DURATION_SECONDS;
@@ -101,7 +101,7 @@ export async function splitAudioIntoChunks(
       duration: chunkInfo.duration,
     });
     
-    console.log(`✂️  Created chunk ${i + 1}/${numChunks}: ${chunkInfo.duration.toFixed(1)}s`);
+    console.log(`Created chunk ${i + 1}/${numChunks}: ${chunkInfo.duration.toFixed(1)}s`);
   }
   
   return chunks;
@@ -144,7 +144,7 @@ export async function cleanupChunks(jobId: string): Promise<void> {
       const filePath = path.join(chunksDir, file);
       await fs.unlink(filePath);
     }
-    console.log(`🧹 Cleaned up ${files.length} audio chunks`);
+    console.log(`Cleaned up ${files.length} audio chunks`);
   } catch (error) {
     console.warn('Failed to cleanup chunks:', error);
   }
@@ -165,7 +165,7 @@ export async function convertAudioForWhisper(
       .audioChannels(1)
       .output(outputPath)
       .on('end', () => {
-        console.log('✅ Audio converted for Whisper');
+        console.log('Audio converted for Whisper');
         resolve();
       })
       .on('error', (err) => reject(new Error(`Audio conversion failed: ${err.message}`)))

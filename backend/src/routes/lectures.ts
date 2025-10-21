@@ -82,7 +82,7 @@ router.post('/upload', uploadLecture.single('lecture'), async (req, res) => {
 
     const { path: filePath, originalname, size } = req.file;
 
-    console.log(`📤 Received lecture upload: ${originalname} (${(size / 1024 / 1024).toFixed(2)}MB)`);
+    console.log(`Received lecture upload: ${originalname} (${(size / 1024 / 1024).toFixed(2)}MB)`);
 
     // Create job first to get the ID
     const { createJob } = await import('../services/jobManager');
@@ -91,12 +91,12 @@ router.post('/upload', uploadLecture.single('lecture'), async (req, res) => {
     // Start processing in background with the job ID
     processLecture(filePath, originalname, jobId)
       .then(async () => {
-        console.log(`✅ Lecture processing completed: ${jobId}`);
+        console.log(`Lecture processing completed: ${jobId}`);
         // Clean up temp file
         await cleanupFile(filePath);
       })
       .catch(async (error) => {
-        console.error(`❌ Lecture processing failed:`, error);
+        console.error(`Lecture processing failed:`, error);
         // Clean up temp file on error
         await cleanupFile(filePath);
       });
@@ -191,7 +191,7 @@ router.post('/record', uploadLecture.single('lecture'), async (req, res) => {
     const { path: filePath, size } = req.file;
     const fileName = req.body.fileName || 'Recorded Lecture';
 
-    console.log(`🎙️  Received lecture recording: ${fileName} (${(size / 1024 / 1024).toFixed(2)}MB)`);
+    console.log(`Received lecture recording: ${fileName} (${(size / 1024 / 1024).toFixed(2)}MB)`);
 
     // Create job
     const { createJob } = await import('../services/jobManager');
@@ -200,11 +200,11 @@ router.post('/record', uploadLecture.single('lecture'), async (req, res) => {
     // Start processing in the background with the job ID
     processLecture(filePath, fileName, jobId)
       .then(async () => {
-        console.log(`✅ Recording processing completed: ${jobId}`);
+        console.log(`Recording processing completed: ${jobId}`);
         await cleanupFile(filePath);
       })
       .catch(async (error) => {
-        console.error(`❌ Recording processing failed:`, error);
+        console.error(`Recording processing failed:`, error);
         await cleanupFile(filePath);
       });
 
@@ -571,7 +571,7 @@ router.post('/:jobId/flashcards', async (req, res) => {
 
     if (!flashcards) {
       // Generate new flashcards
-      console.log(`🃏 Generating ${count} flashcards for job ${jobId}`);
+      console.log(`Generating ${count} flashcards for job ${jobId}`);
       const transcript = await loadTranscript(jobId);
       flashcards = await generateFlashcards(transcript, count);
 
@@ -679,7 +679,7 @@ router.post('/:jobId/quiz', async (req, res) => {
 
     if (!quiz) {
       // Generate new quiz
-      console.log(`📝 Generating ${count} quiz questions for job ${jobId}`);
+      console.log(`Generating ${count} quiz questions for job ${jobId}`);
       const transcript = await loadTranscript(jobId);
       quiz = await generateQuiz(transcript, count);
 

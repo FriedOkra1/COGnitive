@@ -2,7 +2,7 @@
 
 A retro-styled Macintosh-inspired AI study companion with voice input, document upload, and intelligent chat capabilities.
 
-## 🚀 Features
+## Features
 
 ### Core Features
 - **Lecture Recording**: Record or upload lectures with automatic transcription and AI-generated notes
@@ -15,7 +15,7 @@ A retro-styled Macintosh-inspired AI study companion with voice input, document 
 - **Persistent Storage**: All content persists across page switches until tab is closed
 - **Classic Mac UI**: Beautiful System 6-inspired retro interface
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Frontend:**
 - React 18 with TypeScript
@@ -30,13 +30,13 @@ A retro-styled Macintosh-inspired AI study companion with voice input, document 
 - Multer for file uploads
 - pdf-parse, mammoth for document processing
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 18+ installed
 - OpenAI API key (get one at https://platform.openai.com/api-keys)
 - npm or yarn package manager
 
-## 🔧 Setup Instructions
+## Setup Instructions
 
 ### Quick Start (Recommended)
 
@@ -84,9 +84,9 @@ npm run dev
 
 Visit `http://localhost:5173` in your browser to use the app!
 
-## 🔐 Security Note
+## Security Note
 
-⚠️ **IMPORTANT**: Your OpenAI API key was posted publicly in the chat. Please:
+IMPORTANT: Your OpenAI API key was posted publicly in the chat. Please:
 
 1. Go to https://platform.openai.com/api-keys
 2. Revoke the exposed API key
@@ -94,7 +94,7 @@ Visit `http://localhost:5173` in your browser to use the app!
 4. Update your `backend/.env` file with the new key
 5. Never commit `.env` files to git (already in `.gitignore`)
 
-## 📦 Available Commands
+## Available Commands
 
 From the root directory:
 
@@ -105,7 +105,7 @@ From the root directory:
 - `npm run build` - Build both frontend and backend for production
 - `npm run clean` - Remove all node_modules and uploaded files
 
-## 🎯 Usage Guide
+## Usage Guide
 
 ### Getting Started
 The app opens to **Lecture Recording** by default. Toggle between Lecture Recording and AI Chatbot using the navigation buttons.
@@ -144,7 +144,7 @@ Generate flashcards and quizzes from any uploaded content:
 - Review and edit generated content
 - All content persists until you close the tab
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 COGnitive/
@@ -172,7 +172,7 @@ COGnitive/
 └── README.md
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Backend won't start
 - Make sure `.env` file exists with your OpenAI API key
@@ -194,7 +194,7 @@ COGnitive/
 - Use HTTPS or localhost (required for microphone access)
 - Check browser compatibility (Chrome/Edge recommended)
 
-## 📝 API Endpoints
+## API Endpoints
 
 ### Chat & Upload
 - `GET /health` - Health check
@@ -214,7 +214,7 @@ COGnitive/
 - `POST /api/youtube/flashcards` - Generate flashcards from transcript
 - `POST /api/youtube/quiz` - Generate quiz from transcript
 
-## 🎨 Design
+## Design
 
 The app features a classic Macintosh System 6 aesthetic with:
 - Chicago-style fonts
@@ -222,11 +222,11 @@ The app features a classic Macintosh System 6 aesthetic with:
 - Classic Mac window chrome
 - Retro gray color scheme
 
-## 📄 License
+## License
 
 This project is open source and available for educational purposes.
 
-## 🤝 Contributing
+## Contributing
 
 Future enhancements could include:
 - Database integration for permanent storage
@@ -238,5 +238,5 @@ Future enhancements could include:
 
 ---
 
-Made with ❤️ using React, Node.js, and OpenAI
+Made with React, Node.js, and OpenAI
 

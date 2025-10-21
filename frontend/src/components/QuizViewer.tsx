@@ -140,15 +140,15 @@ export function QuizViewer({ questions, onUpdateQuestion }: QuizViewerProps) {
     return (
       <div className="space-y-6">
         <div className="mac-card p-8 text-center">
-          <div className="text-4xl mb-4">🎉 Quiz Complete!</div>
+          <div className="text-4xl mb-4">Quiz Complete!</div>
           <div className="text-6xl mb-4">{score} / {questions.length}</div>
           <div className="text-3xl mb-6">{percentage}%</div>
           
           <div className="mb-6">
-            {percentage >= 90 && <p className="text-2xl">Excellent work! 🌟</p>}
-            {percentage >= 70 && percentage < 90 && <p className="text-2xl">Great job! 👍</p>}
-            {percentage >= 50 && percentage < 70 && <p className="text-2xl">Good effort! 📚</p>}
-            {percentage < 50 && <p className="text-2xl">Keep studying! 💪</p>}
+            {percentage >= 90 && <p className="text-2xl">Excellent work!</p>}
+            {percentage >= 70 && percentage < 90 && <p className="text-2xl">Great job!</p>}
+            {percentage >= 50 && percentage < 70 && <p className="text-2xl">Good effort!</p>}
+            {percentage < 50 && <p className="text-2xl">Keep studying!</p>}
           </div>
 
           <ClassicButton onClick={handleRestart}>
@@ -168,7 +168,7 @@ export function QuizViewer({ questions, onUpdateQuestion }: QuizViewerProps) {
               return (
                 <div key={q.id} className={`mac-card p-6 ${correct ? 'bg-green-50' : answered ? 'bg-red-50' : 'bg-gray-50'}`}>
                   <div className="flex items-start gap-3 mb-3">
-                    <span className="text-2xl">{correct ? '✓' : answered ? '✗' : '○'}</span>
+                    <span className="text-2xl">{correct ? 'Correct' : answered ? 'Incorrect' : 'Not answered'}</span>
                     <div className="flex-1">
                       <p className="text-xl mb-2">Question {index + 1}: {q.question}</p>
                       
@@ -186,7 +186,7 @@ export function QuizViewer({ questions, onUpdateQuestion }: QuizViewerProps) {
                               }`}
                             >
                               {String.fromCharCode(65 + i)}) {option}
-                              {i === q.correctAnswer && <span className="ml-2">✓ Correct</span>}
+                              {i === q.correctAnswer && <span className="ml-2">Correct</span>}
                               {i === userAnswer?.answer && i !== q.correctAnswer && <span className="ml-2">Your answer</span>}
                             </div>
                           ))}

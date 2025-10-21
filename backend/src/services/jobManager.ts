@@ -14,7 +14,7 @@ const jobs = new Map<string, LectureJob>();
 export async function initializeJobManager(): Promise<void> {
   try {
     await fs.mkdir(LECTURES_DIR, { recursive: true });
-    console.log('📁 Job manager initialized');
+    console.log('Job manager initialized');
     
     // Load existing jobs from disk
     await loadExistingJobs();
@@ -55,7 +55,7 @@ async function loadExistingJobs(): Promise<void> {
       }
     }
     
-    console.log(`📥 Loaded ${jobs.size} existing jobs`);
+    console.log(`Loaded ${jobs.size} existing jobs`);
   } catch (error) {
     console.warn('No existing jobs to load');
   }
@@ -88,7 +88,7 @@ export async function createJob(fileName?: string, fileSize?: number): Promise<s
   // Save metadata
   await saveJobMetadata(jobId);
   
-  console.log(`✨ Created job: ${jobId}`);
+  console.log(`Created job: ${jobId}`);
   return jobId;
 }
 
@@ -141,7 +141,7 @@ export async function completeJob(
   job.notes = notes;
   
   await saveJobMetadata(jobId);
-  console.log(`✅ Job completed: ${jobId}`);
+  console.log(`Job completed: ${jobId}`);
 }
 
 /**
@@ -158,7 +158,7 @@ export async function failJob(jobId: string, error: string): Promise<void> {
   job.updatedAt = new Date();
   
   await saveJobMetadata(jobId);
-  console.error(`❌ Job failed: ${jobId} - ${error}`);
+  console.error(`Job failed: ${jobId} - ${error}`);
 }
 
 /**
@@ -203,7 +203,7 @@ export async function deleteJob(jobId: string): Promise<void> {
   try {
     await fs.rm(jobDir, { recursive: true, force: true });
     jobs.delete(jobId);
-    console.log(`🗑️  Deleted job: ${jobId}`);
+    console.log(`Deleted job: ${jobId}`);
   } catch (error) {
     console.error(`Failed to delete job ${jobId}:`, error);
     throw error;
@@ -238,7 +238,7 @@ async function cleanupOldJobs(): Promise<void> {
   }
   
   if (jobsToDelete.length > 0) {
-    console.log(`🧹 Cleaning up ${jobsToDelete.length} old jobs`);
+    console.log(`Cleaning up ${jobsToDelete.length} old jobs`);
     for (const jobId of jobsToDelete) {
       try {
         await deleteJob(jobId);
